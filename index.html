@@ -1,1071 +1,3413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d19">
-<meta name="description" content="Chigozirim Wilson Weli - Frontend Developer, UX/UI Designer, Prompt Engineer and AI Specialist. Explore my professional portfolio, skills and projects.">
-<meta name="author" content="Chigozirim Wilson Weli">
-<meta name="robots" content="index, follow">
-
-<title>Chigozirim Wilson Weli | Professional Portfolio</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-/* =========================================
-   1. GLOBAL SETTINGS
-========================================= */
-
-:root {
-    --background: #080d19;
-    --surface: #101a2c;
-    --surface-light: #16243b;
-    --primary: #168aff;
-    --secondary: #805cff;
-    --text: #ffffff;
-    --muted: #a5b1c5;
-    --border: rgba(255,255,255,0.09);
-    --gradient: linear-gradient(110deg,#168aff,#805cff);
-    --header: rgba(8,13,25,0.94);
-}
-
-body.light-mode {
-    --background: #f4f7fc;
-    --surface: #ffffff;
-    --surface-light: #eaf0fa;
-    --text: #152238;
-    --muted: #5e6b80;
-    --border: rgba(20,40,70,0.12);
-    --header: rgba(244,247,252,0.95);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
-
-body {
-    background: var(--background);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.7;
-    overflow-x: hidden;
-    transition: background 0.3s, color 0.3s;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-button,
-input,
-textarea {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-.container {
-    width: min(1150px, 90%);
-    margin: auto;
-}
-
-.gradient {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.section {
-    padding: 100px 0;
-}
-
-.eyebrow {
-    display: inline-block;
-    color: #56aaff;
-    font-size: 12px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
-}
-
-.section-heading {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(32px,5vw,48px);
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.section-intro {
-    color: var(--muted);
-    max-width: 700px;
-    font-size: 15px;
-    line-height: 1.9;
-    margin-bottom: 45px;
-}
-
-.reveal {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.js-ready .reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.js-ready .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 4px;
-}
-
-/* =========================================
-   2. NAVIGATION
-========================================= */
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: var(--header);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-}
-
-.navbar {
-    min-height: 78px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    white-space: nowrap;
-}
-
-.logo span {
-    color: var(--primary);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    list-style: none;
-}
-
-.nav-links a {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 700;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.theme-toggle {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text);
-    font-size: 18px;
-}
-
-.menu-toggle {
-    display: none;
-    background: transparent;
-    border: 0;
-    color: var(--text);
-    font-size: 27px;
-}
-
-/* =========================================
-   3. HERO SECTION
-========================================= */
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 135px 0 80px;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: rgba(22,138,255,0.13);
-    filter: blur(120px);
-    top: 10%;
-    right: -150px;
-    pointer-events: none;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background: rgba(128,92,255,0.10);
-    filter: blur(120px);
-    bottom: -150px;
-    left: -100px;
-    pointer-events: none;
-}
-
-.hero-grid {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    align-items: center;
-    gap: 45px;
-}
-
-.hero-content {
-    max-width: 800px;
-}
-
-.availability {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 15px;
-    border: 1px solid rgba(50,210,140,0.25);
-    border-radius: 30px;
-    background: rgba(50,210,140,0.06);
-    color: #65dca9;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 28px;
-}
-
-.availability span {
-    width: 7px;
-    height: 7px;
-    background: #45d99a;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #45d99a;
-}
-
-.hero h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(42px,6vw,75px);
-    line-height: 1.08;
-    letter-spacing: -3px;
-    margin-bottom: 24px;
-}
-
-.hero-role {
-    color: #7dbaff;
-    font-size: clamp(15px,2vw,20px);
-    font-weight: 700;
-    margin-bottom: 18px;
-    min-height: 32px;
-}
-
-.hero-description {
-    max-width: 680px;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.9;
-    margin-bottom: 32px;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 23px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    transition: 0.3s;
-    border: 1px solid transparent;
-}
-
-.btn-primary {
-    background: var(--gradient);
-    color: white;
-    box-shadow: 0 8px 30px rgba(22,138,255,0.2);
-}
-
-.btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(22,138,255,0.35);
-}
-
-.btn-outline {
-    border: 1px solid var(--border);
-    color: var(--text);
-}
-
-.btn-outline:hover {
-    border-color: var(--primary);
-    color: #65b4ff;
-}
-
-.hero-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 35px;
-    margin-top: 50px;
-}
-
-.stat h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 29px;
-}
-
-.stat p {
-    color: var(--muted);
-    font-size: 11px;
-    max-width: 130px;
-}
-
-.hero-image-area {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 470px;
-}
-
-.hero-image-frame {
-    width: min(360px,90%);
-    height: 430px;
-    border-radius: 180px 180px 25px 25px;
-    overflow: hidden;
-    background: linear-gradient(145deg,#1d3e65,#101a2c,#805cff);
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: 0 25px 80px rgba(22,138,255,0.16);
-    position: relative;
-}
-
-.image-placeholder {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 25px;
-    color: #dceaff;
-}
-
-.image-placeholder .initials {
-    width: 170px;
-    height: 170px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--gradient);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 65px;
-    font-weight: 800;
-    box-shadow: 0 15px 60px rgba(22,138,255,0.3);
-}
-
-.image-placeholder strong {
-    font-size: 16px;
-    margin-top: 20px;
-}
-
-.image-placeholder p {
-    font-size: 11px;
-    color: #b7cce6;
-    margin-top: 8px;
-}
-
-.floating-card {
-    position: absolute;
-    padding: 12px 17px;
-    background: #111c30;
-    border: 1px solid rgba(255,255,255,0.13);
-    border-radius: 10px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    animation: float 5s ease-in-out infinite;
-}
-
-.floating-card.one {
-    left: -5px;
-    top: 80px;
-}
-
-.floating-card.two {
-    right: -5px;
-    bottom: 75px;
-    animation-delay: -2s;
-}
-
-@keyframes float {
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-/* =========================================
-   4. ABOUT SECTION
-========================================= */
-
-.about-section {
-    background: var(--surface);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 65px;
-    align-items: center;
-}
-
-.about-visual {
-    min-height: 390px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-        radial-gradient(circle at center,rgba(22,138,255,0.18),transparent 65%),
-        linear-gradient(145deg,#111d33,#0b1322);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    position: relative;
-    overflow: hidden;
-}
-
-.about-symbol {
-    width: 170px;
-    height: 170px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 35px;
-    background: var(--gradient);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 75px;
-    font-weight: 800;
-    box-shadow: 0 20px 80px rgba(22,138,255,0.25);
-}
-
-.about-content p {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 2;
-    margin-bottom: 18px;
-}
-
-.about-details {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.detail-item {
-    padding: 17px;
-    border-radius: 10px;
-    background: var(--background);
-    border: 1px solid var(--border);
-}
-
-.detail-item small {
-    display: block;
-    color: var(--muted);
-    font-size: 11px;
-    margin-bottom: 6px;
-}
-
-.detail-item strong {
-    font-size: 12px;
-}
-
-/* =========================================
-   5. SKILLS SECTION
-========================================= */
-
-.skills-section {
-    background: var(--background);
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 25px;
-}
-
-.skill-card {
-    padding: 30px;
-    background: var(--surface);
-    border: 1px solid rgba(77,163,255,0.18);
-    border-radius: 18px;
-    transition: 0.3s ease;
-}
-
-.skill-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--primary);
-}
-
-.skill-icon {
-    font-size: 30px;
-    color: #4da3ff;
-    margin-bottom: 18px;
-}
-
-.skill-card h3 {
-    font-family: 'Space Grotesk',sans-serif;
-    font-size: 20px;
-    margin-bottom: 25px;
-}
-
-.skill-item {
-    margin-bottom: 22px;
-}
-
-.skill-label {
-    display: flex;
-    justify-content: space-between;
-    color: var(--text);
-    font-size: 13px;
-    margin-bottom: 10px;
-}
-
-.skill-track {
-    height: 7px;
-    background: #26334a;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.skill-fill {
-    width: 0;
-    height: 100%;
-    background: var(--gradient);
-    border-radius: 20px;
-    transition: width 1.5s ease;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-    margin-top: 25px;
-}
-
-.skill-tags span {
-    background: rgba(77,163,255,0.1);
-    color: #8dc5ff;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    border: 1px solid rgba(77,163,255,0.15);
-}
-
-.skill-note {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 25px;
-}
-
-/* =========================================
-   6. TECHNOLOGIES
-========================================= */
-
-.technology-section {
-    background: var(--surface);
-}
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 17px;
-}
-
-.tech-card {
-    min-height: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: var(--background);
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    transition: 0.3s;
-}
-
-.tech-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-}
-
-.tech-icon {
-    font-size: 27px;
-    color: #61b2ff;
-    font-weight: 800;
-}
-
-.tech-card strong {
-    font-size: 13px;
-}
-
-/* =========================================
-   7. EDUCATION
-========================================= */
-
-.education-section {
-    background: var(--background);
-}
-
-.timeline {
-    max-width: 800px;
-    border-left: 2px solid rgba(22,138,255,0.4);
-    margin-left: 10px;
-    padding-left: 30px;
-}
-
-.timeline-card {
-    position: relative;
-    padding: 25px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    margin-bottom: 25px;
-}
-
-.timeline-card::before {
-    content: "";
-    position: absolute;
-    left: -38px;
-    top: 32px;
-    width: 13px;
-    height: 13px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--primary);
-}
-
-.timeline-date {
-    color: #5baaff;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.timeline-card h3 {
-    font-family: 'Space Grotesk',sans-serif;
-    font-size: 19px;
-    margin-bottom: 8px;
-}
-
-.timeline-card p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-/* =========================================
-   8. PROJECTS
-========================================= */
-
-.projects-section {
-    background: var(--surface);
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 25px;
-}
-
-.project-card {
-    background: var(--background);
-    border: 1px solid var(--border);
-    border-radius: 17px;
-    overflow: hidden;
-    transition: 0.3s;
-}
-
-.project-card:hover {
-    transform: translateY(-7px);
-    border-color: var(--primary);
-}
-
-.project-preview {
-    min-height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-        radial-gradient(circle at center,rgba(22,138,255,0.25),transparent 65%),
-        linear-gradient(145deg,#162b4b,#0a1324);
-    position: relative;
-    overflow: hidden;
-}
-
-.project-preview.kitchen {
-    background:
-        radial-gradient(circle at center,rgba(240,158,75,0.2),transparent 65%),
-        linear-gradient(145deg,#39251e,#9b6139);
-}
-
-.project-preview span {
-    font-family: 'Space Grotesk',sans-serif;
-    font-size: 30px;
-    font-weight: 800;
-    color: #ffffff;
-    text-align: center;
-    padding: 15px;
-}
-
-.project-content {
-    padding: 25px;
-}
-
-.project-category {
-    color: #5baaff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 10px;
-    font-weight: 800;
-}
-
-.project-content h3 {
-    font-family: 'Space Grotesk',sans-serif;
-    font-size: 21px;
-    margin: 10px 0;
-}
-
-.project-content p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.9;
-    margin-bottom: 20px;
-}
-
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.project-tags span {
-    padding: 6px 10px;
-    background: rgba(22,138,255,0.1);
-    border-radius: 5px;
-    color: #8dc5ff;
-    font-size: 10px;
-}
-
-.project-link {
-    display: inline-block;
-    color: #69b6ff;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.project-link:hover {
-    color: var(--text);
-}
-
-/* =========================================
-   9. CERTIFICATIONS
-========================================= */
-
-.certifications-section {
-    background: var(--background);
-}
-
-.certification-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
-}
-
-.certification-card {
-    display: flex;
-    gap: 18px;
-    padding: 25px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    transition: 0.3s;
-}
-
-.certification-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-5px);
-}
-
-.certification-icon {
-    flex: 0 0 50px;
-    height: 50px;
-    display: grid;
-    place-items: center;
-    background: var(--gradient);
-    border-radius: 12px;
-    font-weight: 800;
-    color: white;
-}
-
-.certification-card h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-.certification-card p {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.certification-status {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 5px 10px;
-    background: rgba(22,138,255,0.12);
-    color: #80bdff;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 800;
-}
-
-.certification-note {
-    padding: 25px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--muted);
-    max-width: 750px;
-    font-size: 14px;
-    line-height: 1.9;
-    margin-top: 25px;
-}
-
-/* =========================================
-   10. CURRENTLY LEARNING
-========================================= */
-
-.learning-section {
-    background: var(--surface);
-}
-
-.learning-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-}
-
-.learning-card {
-    padding: 25px;
-    background: var(--background);
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    transition: 0.3s;
-}
-
-.learning-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-5px);
-}
-
-.learning-card .icon {
-    font-size: 27px;
-    margin-bottom: 17px;
-}
-
-.learning-card h3 {
-    font-size: 17px;
-    margin-bottom: 10px;
-}
-
-.learning-card p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.8;
-}
-
-/* =========================================
-   11. CONTACT SECTION
-========================================= */
-
-.contact-section {
-    background: var(--background);
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 25px;
-}
-
-.contact-information {
-    padding: 32px;
-    background: linear-gradient(145deg,#111e35,#172b4b);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-}
-
-.contact-information h3 {
-    font-family: 'Space Grotesk',sans-serif;
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: white;
-}
-
-.contact-information > p {
-    color: #a5b1c5;
-    font-size: 13px;
-    line-height: 1.9;
-    margin-bottom: 28px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 13px;
-    margin: 22px 0;
-    font-size: 13px;
-    color: white;
-    overflow-wrap: anywhere;
-}
-
-.contact-item .contact-icon {
-    flex: 0 0 38px;
-    height: 38px;
-    display: grid;
-    place-items: center;
-    border-radius: 10px;
-    background: rgba(22,138,255,0.13);
-    color: #72baff;
-}
-
-.contact-item small {
-    display: block;
-    color: #8c9bb2;
-    font-size: 10px;
-    margin-bottom: 4px;
-}
-
-.contact-item a:hover {
-    color: #72baff;
-}
-
-.social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 30px;
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    display: grid;
-    place-items: center;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50%;
-    color: white;
-    font-size: 12px;
-    font-weight: 800;
-    transition: 0.3s;
-}
-
-.social-links a:hover {
-    background: var(--gradient);
-    transform: translateY(-4px);
-}
-
-.contact-form {
-    padding: 32px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-}
-
-.contact-form h3 {
-    font-family: 'Space Grotesk',sans-serif;
-    font-size: 23px;
-    margin-bottom: 8px;
-}
-
-.contact-form > p {
-    color: var(--muted);
-    font-size: 12px;
-    margin-bottom: 24px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-}
-
-.form-group {
-    margin-bottom: 17px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bot
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Chigozirim Wilson Weli - Professional Portfolio. Explore skills, projects, education, certifications and professional achievements.">
+
+    <meta name="author" content="Chigozirim Wilson Weli">
+
+    <meta name="theme-color" content="#080d1b">
+
+    <title>Chigozirim Wilson Weli | Professional Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           GLOBAL CONFIGURATION
+        ========================== */
+
+        :root {
+            --bg: #080d1b;
+            --bg-secondary: #0d1528;
+            --card: #111d35;
+            --card-hover: #162440;
+
+            --primary: #42a5ff;
+            --secondary: #806bff;
+            --accent: #00e5c0;
+
+            --text: #f5f7ff;
+            --muted: #a1aec5;
+
+            --border: rgba(255,255,255,0.09);
+
+            --shadow: 0 20px 60px rgba(0,0,0,0.25);
+
+            --radius: 18px;
+
+            --transition: 0.3s ease;
+        }
+
+        body.light-mode {
+            --bg: #f4f7fc;
+            --bg-secondary: #eaf0fa;
+            --card: #ffffff;
+            --card-hover: #f0f5ff;
+
+            --primary: #176bca;
+            --secondary: #6752d9;
+            --accent: #008e79;
+
+            --text: #142039;
+            --muted: #63718a;
+
+            --border: rgba(0,0,0,0.09);
+
+            --shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(1150px, 90%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 105px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-heading .eyebrow {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(30px, 5vw, 43px);
+            margin-top: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                100deg,
+                var(--primary),
+                var(--secondary),
+                var(--accent)
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 14px 25px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+            font-size: 14px;
+
+            border: 1px solid transparent;
+
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: linear-gradient(110deg, #2788ee, #7357ef);
+            color: white;
+            box-shadow: 0 10px 30px rgba(65,130,255,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(65,130,255,0.3);
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           HEADER AND NAVIGATION
+        ========================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            background: rgba(8,13,27,0.85);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        body.light-mode header {
+            background: rgba(244,247,252,0.9);
+        }
+
+        .navbar {
+            min-height: 78px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle,
+        .menu-toggle {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 10px;
+            border: 1px solid var(--border);
+
+            background: var(--card);
+            color: var(--text);
+
+            font-size: 18px;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 140px 0 90px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            background: rgba(40,110,255,0.12);
+
+            filter: blur(120px);
+            border-radius: 50%;
+
+            top: 10%;
+            left: -180px;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            background: rgba(117,83,255,0.13);
+
+            filter: blur(120px);
+            border-radius: 50%;
+
+            bottom: -200px;
+            right: -100px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+
+            align-items: center;
+            gap: 70px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background: rgba(66,165,255,0.1);
+            border: 1px solid rgba(66,165,255,0.2);
+
+            color: var(--primary);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            background: var(--accent);
+            border-radius: 50%;
+
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+
+            font-size: clamp(40px, 6vw, 67px);
+
+            line-height: 1.12;
+            letter-spacing: -2px;
+
+            margin-bottom: 22px;
+        }
+
+        .hero h2 {
+            font-size: 19px;
+            color: var(--muted);
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .hero-description {
+            color: var(--muted);
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-socials {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            margin-top: 35px;
+        }
+
+        .hero-socials a {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .hero-socials a:hover {
+            color: var(--primary);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            max-width: 410px;
+            margin: auto;
+            width: 100%;
+        }
+
+        .hero-image-frame {
+            aspect-ratio: 4 / 5;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(145deg, #172c50, #10182c);
+
+            border: 1px solid rgba(66,165,255,0.3);
+
+            padding: 12px;
+
+            box-shadow: var(--shadow);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-frame img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 22px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(circle, #1c3760, #10182c);
+
+            border-radius: 22px;
+
+            color: #a9c9ef;
+        }
+
+        .image-placeholder .placeholder-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .image-placeholder p {
+            font-size: 13px;
+        }
+
+        .floating-card {
+            position: absolute;
+
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            padding: 14px 18px;
+
+            box-shadow: var(--shadow);
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .floating-card.one {
+            top: 12%;
+            left: -65px;
+        }
+
+        .floating-card.two {
+            bottom: 12%;
+            right: -55px;
+        }
+
+        .floating-card span {
+            color: var(--accent);
+            display: block;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+
+        /* =========================
+           ABOUT SECTION
+        ========================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--muted);
+            margin-bottom: 17px;
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+        .info-item {
+            padding: 17px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .info-item small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .info-item strong {
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .about-visual {
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .about-visual h3 {
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .about-highlight {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin: 20px 0;
+        }
+
+        .highlight-icon {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            background: rgba(66,165,255,0.12);
+
+            border-radius: 12px;
+
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .about-highlight strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .about-highlight small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           SKILLS SECTION
+        ========================== */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            padding: 27px;
+
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--primary);
+            background: var(--card-hover);
+        }
+
+        .skill-icon {
+            font-size: 30px;
+            margin-bottom: 17px;
+        }
+
+        .skill-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tags span {
+            font-size: 10px;
+            font-weight: 700;
+
+            padding: 6px 10px;
+
+            border-radius: 5px;
+
+            background: rgba(66,165,255,0.1);
+            color: var(--primary);
+        }
+
+
+        /* =========================
+           PROJECTS SECTION
+        ========================== */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--primary);
+        }
+
+        .project-image {
+            height: 235px;
+
+            background:
+                linear-gradient(135deg, #172e52, #30215e);
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-placeholder {
+            text-align: center;
+            color: #a8caff;
+        }
+
+        .project-placeholder span {
+            font-size: 55px;
+            display: block;
+        }
+
+        .project-placeholder small {
+            font-size: 12px;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tech span {
+            font-size: 10px;
+            padding: 5px 9px;
+
+            background: rgba(128,107,255,0.12);
+            color: var(--secondary);
+
+            border-radius: 5px;
+        }
+
+        .project-link {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           EXPERIENCE TIMELINE
+        ========================== */
+
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            left: 15px;
+            top: 5px;
+            bottom: 5px;
+
+            width: 2px;
+
+            background: linear-gradient(
+                var(--primary),
+                var(--secondary),
+                transparent
+            );
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 55px;
+            margin-bottom: 35px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+
+            left: 7px;
+            top: 7px;
+
+            width: 18px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+
+            border: 4px solid var(--bg);
+
+            box-shadow: 0 0 15px rgba(66,165,255,0.6);
+        }
+
+        .timeline-content {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            padding: 24px;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+        }
+
+        .timeline-content .date {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 800;
+            margin: 7px 0 12px;
+        }
+
+        .timeline-content p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           EDUCATION SECTION
+        ========================== */
+
+        .education-card {
+            max-width: 800px;
+            margin: auto;
+
+            padding: 35px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .education-icon {
+            width: 65px;
+            height: 65px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            background: rgba(66,165,255,0.13);
+
+            color: var(--primary);
+
+            font-size: 30px;
+
+            border-radius: 15px;
+        }
+
+        .education-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 21px;
+        }
+
+        .education-card p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .education-card .institution {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           CERTIFICATIONS
+        ========================== */
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .certificate-card {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            padding: 28px;
+
+            text-align: center;
+
+            transition: var(--transition);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary);
+        }
+
+        .certificate-card .icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .certificate-card h3 {
+            font-size: 16px;
+            margin-bottom: 9px;
+        }
+
+        .certificate-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           ACHIEVEMENTS
+        ========================== */
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .achievement-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+            padding: 28px;
+
+            text-align: center;
+        }
+
+        .achievement-card span {
+            display: block;
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .achievement-card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .achievement-card p {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           TESTIMONIALS
+        ========================== */
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+            padding: 30px;
+        }
+
+        .testimonial-card .quote {
+            font-size: 32px;
+            color: var(--primary);
+        }
+
+        .testimonial-card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 12px 0 20px;
+        }
+
+        .testimonial-card strong {
+            font-size: 13px;
+        }
+
+        .testimonial-card small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           CONTACT SECTION
+        ========================== */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 35px;
+        }
+
+        .contact-information {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            padding: 30px;
+        }
+
+        .contact-information h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .contact-information > p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin: 22px 0;
+        }
+
+        .contact-detail .icon {
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+            place-items: center;
+
+            background: rgba(66,165,255,0.12);
+            color: var(--primary);
+
+            border-radius: 10px;
+        }
+
+        .contact-detail small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .contact-detail strong {
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-form {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            padding: 30px;
+        }
+
+        .contact-form h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            background: var(--bg-secondary);
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            color: var(--text);
+
+            outline: none;
+
+            font-family: inherit;
+            font-size: 13px;
+
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+        }
+
+        .form-note {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: var(--bg-secondary);
+
+            border-top: 1px solid var(--border);
+
+            padding: 45px 0 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--border);
+
+            margin-top: 30px;
+            padding-top: 20px;
+
+            text-align: center;
+
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           FLOATING WHATSAPP BUTTON
+        ========================== */
+
+        .whatsapp-float {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            width: 60px;
+            height: 60px;
+
+            background: #25D366;
+            color: white;
+
+            border-radius: 50%;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 28px;
+
+            box-shadow: 0 8px 30px rgba(37,211,102,0.3);
+
+            z-index: 999;
+
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+
+        /* =========================
+           SCROLL TO TOP
+        ========================== */
+
+        .scroll-top {
+            position: fixed;
+
+            bottom: 100px;
+            right: 32px;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 10px;
+
+            border: 1px solid var(--border);
+
+            background: var(--card);
+            color: var(--text);
+
+            display: none;
+            place-items: center;
+
+            font-size: 20px;
+
+            z-index: 998;
+        }
+
+        .scroll-top.show {
+            display: grid;
+        }
+
+
+        /* =========================
+           SCROLL ANIMATIONS
+        ========================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero-grid {
+                gap: 35px;
+            }
+
+            .skills-grid,
+            .certifications-grid,
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .menu-toggle {
+                display: grid;
+                place-items: center;
+            }
+
+            .nav-links {
+                position: absolute;
+
+                top: 78px;
+                left: 0;
+
+                width: 100%;
+
+                background: var(--bg-secondary);
+
+                border-bottom: 1px solid var(--border);
+
+                padding: 20px 5%;
+
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+
+                gap: 20px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 125px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons,
+            .hero-socials {
+                justify-content: center;
+            }
+
+            .hero-image-wrapper {
+                max-width: 350px;
+                margin-top: 20px;
+            }
+
+            .about-grid {
+                gap: 35px;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .certifications-grid,
+            .achievements-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero h2 {
+                font-size: 16px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .floating-card.one {
+                left: -10px;
+            }
+
+            .floating-card.two {
+                right: -10px;
+            }
+
+            .about-info {
+                grid-template-columns: 1fr;
+            }
+
+            .education-card {
+                flex-direction: column;
+                padding: 25px;
+            }
+
+            .contact-information,
+            .contact-form {
+                padding: 22px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="container navbar">
+
+            <a href="#home" class="logo">
+                CW<span>.</span>
+            </a>
+
+            <nav>
+
+                <ul class="nav-links" id="navLinks">
+
+                    <li><a href="#home">Home</a></li>
+
+                    <li><a href="#about">About</a></li>
+
+                    <li><a href="#skills">Skills</a></li>
+
+                    <li><a href="#projects">Projects</a></li>
+
+                    <li><a href="#experience">Experience</a></li>
+
+                    <li><a href="#education">Education</a></li>
+
+                    <li><a href="#certifications">Certifications</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Toggle light and dark mode"
+                    title="Toggle theme"
+                >
+                    ☀
+                </button>
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="container hero-grid">
+
+            <div class="hero-content reveal">
+
+                <div class="hero-label">
+
+                    <span class="status-dot"></span>
+
+                    AVAILABLE FOR OPPORTUNITIES
+
+                </div>
+
+                <h1>
+
+                    Chigozirim
+
+                    <span class="gradient-text">
+                        Wilson Weli
+                    </span>
+
+                </h1>
+
+                <h2>
+                    <span id="typingText">
+                        Your Professional Title Goes Here
+                    </span>
+                </h2>
+
+                <p class="hero-description">
+
+                    Welcome to my professional portfolio.
+
+                    I am passionate about technology, innovation,
+                    continuous learning and creating meaningful
+                    digital experiences.
+
+                    Explore my work, skills, projects and professional
+                    journey.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#projects" class="btn btn-primary">
+
+                        Explore My Projects →
+
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+
+                        Let's Connect
+
+                    </a>
+
+                </div>
+
+                <div class="hero-socials">
+
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                    </a>
+
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                        Instagram
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-image-wrapper reveal">
+
+                <div class="hero-image-frame">
+
+                    <!--
+                    HERO IMAGE PLACEHOLDER
+
+                    Upload a professional photograph and replace
+                    the placeholder below with:
+
+                    <img src="hero-image.jpg"
+                    alt="Chigozirim Wilson Weli">
+
+                    -->
+
+                    <div class="image-placeholder">
+
+                        <div class="placeholder-icon">
+                            👤
+                        </div>
+
+                        <h3>YOUR HERO IMAGE</h3>
+
+                        <p>
+                            Add your professional photograph here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="floating-card one">
+
+                    Creative Mind
+
+                    <span>Innovation & Ideas</span>
+
+                </div>
+
+                <div class="floating-card two">
+
+                    Continuous Growth
+
+                    <span>Learning Every Day</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="section" id="about">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">GET TO KNOW ME</span>
+
+                <h2>About <span class="gradient-text">Me</span></h2>
+
+                <p>
+                    A closer look at my background, interests
+                    and professional journey.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <div class="about-content reveal">
+
+                    <h3>
+                        Passionate About Growth, Technology
+                        & Innovation.
+                    </h3>
+
+                    <p>
+
+                        I am a motivated individual with an interest
+                        in technology, professional development and
+                        innovative solutions.
+
+                    </p>
+
+                    <p>
+
+                        My journey is driven by curiosity, creativity
+                        and a commitment to developing valuable skills
+                        that solve real-world problems.
+
+                    </p>
+
+                    <p>
+
+                        I continuously seek opportunities to learn,
+                        collaborate and contribute to meaningful
+                        projects.
+
+                    </p>
+
+                    <p>
+
+                        <strong>
+                            Replace this section with your complete
+                            professional biography.
+                        </strong>
+
+                    </p>
+
+
+                    <div class="about-info">
+
+                        <div class="info-item">
+
+                            <small>Full Name</small>
+
+                            <strong>
+                                Chigozirim Wilson Weli
+                            </strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <small>Email</small>
+
+                            <strong>
+                                wilsonweli60@gmail.com
+                            </strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <small>Phone</small>
+
+                            <strong>
+                                09052582341
+                            </strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <small>Institution</small>
+
+                            <strong>
+                                Ignatius Ajuru University
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-visual reveal">
+
+                    <h3>Professional Overview</h3>
+
+
+                    <div class="about-highlight">
+
+                        <div class="highlight-icon">🎯</div>
+
+                        <div>
+
+                            <strong>Career Objective</strong>
+
+                            <small>
+                                Add your professional career objective.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-highlight">
+
+                        <div class="highlight-icon">💡</div>
+
+                        <div>
+
+                            <strong>Core Interests</strong>
+
+                            <small>
+                                Add your areas of professional interest.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-highlight">
+
+                        <div class="highlight-icon">🚀</div>
+
+                        <div>
+
+                            <strong>Professional Goals</strong>
+
+                            <small>
+                                Add your short-term and long-term goals.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-highlight">
+
+                        <div class="highlight-icon">🤝</div>
+
+                        <div>
+
+                            <strong>Collaboration</strong>
+
+                            <small>
+                                Open to professional opportunities
+                                and meaningful collaborations.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+
+    <section class="section" id="skills">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">WHAT I BRING</span>
+
+                <h2>Skills & <span class="gradient-text">Expertise</span></h2>
+
+                <p>
+                    A showcase of my technical abilities,
+                    professional strengths and competencies.
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+
+                <div class="skill-card reveal">
+
+                    <div class="skill-icon">💻</div>
+
+                    <h3>Technical Skills</h3>
+
+                    <p>
+                        Add your programming languages,
+                        development tools and technical abilities.
+                    </p>
+
+                    <div class="skill-tags">
+
+                        <span>HTML</span>
+
+                        <span>CSS</span>
+
+                        <span>JavaScript</span>
+
+                        <span>ADD SKILL</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card reveal">
+
+                    <div class="skill-icon">🎨</div>
+
+                    <h3>Design & Creativity</h3>
+
+                    <p>
+                        Add your design knowledge, creative
+                        abilities and digital design experience.
+                    </p>
+
+                    <div class="skill-tags">
+
+                        <span>UI/UX</span>
+
+                        <span>Figma</span>
+
+                        <span>Prototyping</span>
+
+                        <span>ADD SKILL</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card reveal">
+
+                    <div class="skill-icon">🤖</div>
+
+                    <h3>AI & Emerging Technology</h3>
+
+                    <p>
+                        Add your artificial intelligence,
+                        automation and emerging technology skills.
+                    </p>
+
+                    <div class="skill-tags">
+
+                        <span>Artificial Intelligence</span>
+
+                        <span>Automation</span>
+
+                        <span>ADD SKILL</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card reveal">
+
+                    <div class="skill-icon">📊</div>
+
+                    <h3>Professional Skills</h3>
+
+                    <p>
+                        Highlight your professional strengths
+                        and workplace competencies.
+                    </p>
+
+                    <div class="skill-tags">
+
+                        <span>Communication</span>
+
+                        <span>Problem Solving</span>
+
+                        <span>Teamwork</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card reveal">
+
+                    <div class="skill-icon">⚙️</div>
+
+                    <h3>Tools & Platforms</h3>
+
+                    <p>
+                        Showcase software, development platforms
+                        and productivity tools you use.
+                    </p>
+
+                    <div class="skill-tags">
+
+                        <span>GitHub</span>
+
+                        <span>VS Code</span>
+
+                        <span>ADD TOOL</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card reveal">
+
+                    <div class="skill-icon">🌐</div>
+
+                    <h3>Other Competencies</h3>
+
+                    <p>
+                        Include additional areas of expertise,
+                        interests and professional capabilities.
+                    </p>
+
+                    <div class="skill-tags">
+
+                        <span>Research</span>
+
+                        <span>Critical Thinking</span>
+
+                        <span>ADD SKILL</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECTS
+    ========================== -->
+
+    <section class="section" id="projects">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">MY WORK</span>
+
+                <h2>Featured <span class="gradient-text">Projects</span></h2>
+
+                <p>
+                    Selected projects demonstrating my creativity,
+                    technical abilities and practical experience.
+                </p>
+
+            </div>
+
+
+            <div class="projects-grid">
+
+
+                <div class="project-card reveal">
+
+                    <div class="project-image">
+
+                        <div class="project-placeholder">
+
+                            <span>🌐</span>
+
+                            <small>PROJECT IMAGE PLACEHOLDER</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Project One</h3>
+
+                        <p>
+                            Replace this description with details
+                            about your first project, the problem
+                            it solves and its key features.
+                        </p>
+
+                        <div class="project-tech">
+
+                            <span>HTML</span>
+
+                            <span>CSS</span>
+
+                            <span>JavaScript</span>
+
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-card reveal">
+
+                    <div class="project-image">
+
+                        <div class="project-placeholder">
+
+                            <span>💻</span>
+
+                            <small>PROJECT IMAGE PLACEHOLDER</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Project Two</h3>
+
+                        <p>
+                            Add information about another project,
+                            including its purpose, development
+                            process and achievements.
+                        </p>
+
+                        <div class="project-tech">
+
+                            <span>Technology</span>
+
+                            <span>Development</span>
+
+                            <span>Design</span>
+
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-card reveal">
+
+                    <div class="project-image">
+
+                        <div class="project-placeholder">
+
+                            <span>📱</span>
+
+                            <small>PROJECT IMAGE PLACEHOLDER</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Project Three</h3>
+
+                        <p>
+                            Describe your third project and
+                            highlight the technologies and
+                            professional skills involved.
+                        </p>
+
+                        <div class="project-tech">
+
+                            <span>Development</span>
+
+                            <span>UI/UX</span>
+
+                            <span>Innovation</span>
+
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-card reveal">
+
+                    <div class="project-image">
+
+                        <div class="project-placeholder">
+
+                            <span>🚀</span>
+
+                            <small>PROJECT IMAGE PLACEHOLDER</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Project Four</h3>
+
+                        <p>
+                            Add another professional or academic
+                            project with its description and
+                            relevant achievements.
+                        </p>
+
+                        <div class="project-tech">
+
+                            <span>Technology</span>
+
+                            <span>Research</span>
+
+                            <span>Innovation</span>
+
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXPERIENCE
+    ========================== -->
+
+    <section class="section" id="experience">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">MY JOURNEY</span>
+
+                <h2>Professional <span class="gradient-text">Experience</span></h2>
+
+                <p>
+                    My professional journey, responsibilities
+                    and career development.
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <h3>Professional Role / Position One</h3>
+
+                        <div class="date">
+                            ORGANIZATION NAME | YEAR - PRESENT
+                        </div>
+
+                        <p>
+                            Replace this placeholder with your
+                            job title, organization, responsibilities,
+                            professional contributions and achievements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <h3>Professional Role / Position Two</h3>
+
+                        <div class="date">
+                            ORGANIZATION NAME | YEAR - YEAR
+                        </div>
+
+                        <p>
+                            Add your previous employment,
+                            internship, volunteer work or relevant
+                            professional experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <h3>Additional Experience</h3>
+
+                        <div class="date">
+                            ORGANIZATION / PROJECT | YEAR
+                        </div>
+
+                        <p>
+                            Include relevant academic projects,
+                            independent work or professional
+                            development activities.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EDUCATION
+    ========================== -->
+
+    <section class="section" id="education">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">ACADEMIC BACKGROUND</span>
+
+                <h2>My <span class="gradient-text">Education</span></h2>
+
+                <p>
+                    Academic qualifications and educational development.
+                </p>
+
+            </div>
+
+
+            <div class="education-card reveal">
+
+                <div class="education-icon">
+                    🎓
+                </div>
+
+                <div>
+
+                    <h3>Academic Qualification</h3>
+
+                    <p class="institution">
+                        Ignatius Ajuru University of Education
+                    </p>
+
+                    <p>
+                        <strong>Programme:</strong>
+                        [Add Course / Department]
+                    </p>
+
+                    <p>
+                        <strong>Qualification:</strong>
+                        [Add Degree / Qualification]
+                    </p>
+
+                    <p>
+                        <strong>Academic Period:</strong>
+                        [Add Start Year - Expected Graduation Year]
+                    </p>
+
+                    <p>
+                        <strong>Academic Status:</strong>
+                        [Add Current Academic Status]
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CERTIFICATIONS
+    ========================== -->
+
+    <section class="section" id="certifications">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">PROFESSIONAL DEVELOPMENT</span>
+
+                <h2>Certifications & <span class="gradient-text">Credentials</span></h2>
+
+                <p>
+                    Professional certifications, completed courses
+                    and industry-recognized credentials.
+                </p>
+
+            </div>
+
+
+            <div class="certifications-grid">
+
+
+                <div class="certificate-card reveal">
+
+                    <div class="icon">🏅</div>
+
+                    <h3>Certification One</h3>
+
+                    <p>
+                        Issuing Organization: [Add Organization]
+                    </p>
+
+                    <p>
+                        Year: [Add Year]
+                    </p>
+
+                    <p>
+                        Credential ID: [Add ID]
+                    </p>
+
+                    <br>
+
+                    <a href="#" class="project-link">
+                        Verify Certificate →
+                    </a>
+
+                </div>
+
+
+                <div class="certificate-card reveal">
+
+                    <div class="icon">🎖️</div>
+
+                    <h3>Certification Two</h3>
+
+                    <p>
+                        Issuing Organization: [Add Organization]
+                    </p>
+
+                    <p>
+                        Year: [Add Year]
+                    </p>
+
+                    <p>
+                        Credential ID: [Add ID]
+                    </p>
+
+                    <br>
+
+                    <a href="#" class="project-link">
+                        Verify Certificate →
+                    </a>
+
+                </div>
+
+
+                <div class="certificate-card reveal">
+
+                    <div class="icon">📜</div>
+
+                    <h3>Certification Three</h3>
+
+                    <p>
+                        Issuing Organization: [Add Organization]
+                    </p>
+
+                    <p>
+                        Year: [Add Year]
+                    </p>
+
+                    <p>
+                        Credential ID: [Add ID]
+                    </p>
+
+                    <br>
+
+                    <a href="#" class="project-link">
+                        Verify Certificate →
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ACHIEVEMENTS
+    ========================== -->
+
+    <section class="section" id="achievements">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">MILESTONES</span>
+
+                <h2>Achievements & <span class="gradient-text">Recognition</span></h2>
+
+                <p>
+                    Important milestones, awards and accomplishments.
+                </p>
+
+            </div>
+
+
+            <div class="achievements-grid">
+
+
+                <div class="achievement-card reveal">
+
+                    <span>🏆</span>
+
+                    <h3>Achievement One</h3>
+
+                    <p>
+                        Add your award, recognition or accomplishment.
+                    </p>
+
+                </div>
+
+
+                <div class="achievement-card reveal">
+
+                    <span>🌟</span>
+
+                    <h3>Achievement Two</h3>
+
+                    <p>
+                        Describe another important professional milestone.
+                    </p>
+
+                </div>
+
+
+                <div class="achievement-card reveal">
+
+                    <span>🚀</span>
+
+                    <h3>Achievement Three</h3>
+
+                    <p>
+                        Highlight a significant academic or professional achievement.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TESTIMONIALS
+    ========================== -->
+
+    <section class="section" id="testimonials">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">SOCIAL PROOF</span>
+
+                <h2>What People <span class="gradient-text">Say</span></h2>
+
+                <p>
+                    Feedback, recommendations and testimonials
+                    from colleagues, clients and collaborators.
+                </p>
+
+            </div>
+
+
+            <div class="testimonials-grid">
+
+
+                <div class="testimonial-card reveal">
+
+                    <div class="quote">“</div>
+
+                    <p>
+                        [Insert an authentic testimonial about your
+                        professional abilities, collaboration
+                        and contributions.]
+                    </p>
+
+                    <strong>Person's Name</strong>
+
+                    <small>Professional Title / Organization</small>
+
+                </div>
+
+
+                <div class="testimonial-card reveal">
+
+                    <div class="quote">“</div>
+
+                    <p>
+                        [Insert another authentic recommendation
+                        highlighting your work ethic, expertise
+                        and professional strengths.]
+                    </p>
+
+                    <strong>Person's Name</strong>
+
+                    <small>Professional Title / Organization</small>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="section" id="contact">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">LET'S CONNECT</span>
+
+                <h2>Get In <span class="gradient-text">Touch</span></h2>
+
+                <p>
+                    Have a project, opportunity or professional
+                    inquiry? I would love to hear from you.
+                </p>
+
+            </div>
+
+
+            <div class="contact-grid">
+
+
+                <div class="contact-information reveal">
+
+                    <h3>Contact Information</h3>
+
+                    <p>
+                        Reach out through any of the channels below.
+                        I look forward to connecting with you.
+                    </p>
+
+
+                    <div class="contact-detail">
+
+                        <div class="icon">✉</div>
+
+                        <div>
+
+                            <small>Email Address</small>
+
+                            <strong>
+                                <a href="mailto:wilsonweli60@gmail.com">
+                                    wilsonweli60@gmail.com
+                                </a>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-detail">
+
+                        <div class="icon">☎</div>
+
+                        <div>
+
+                            <small>Phone Number</small>
+
+                            <strong>
+                                <a href="tel:+2349052582341">
+                                    +234 905 258 2341
+                                </a>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-detail">
+
+                        <div class="icon">📍</div>
+
+                        <div>
+
+                            <small>Institution</small>
+
+                            <strong>
+                                Ignatius Ajuru University of Education
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-detail">
+
+                        <div class="icon">💬</div>
+
+                        <div>
+
+                            <small>WhatsApp</small>
+
+                            <strong>
+                                Direct WhatsApp Contact
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+                    <a
+                        href="https://wa.me/2349052582341?text=Hello%20Chigozirim%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect."
+                        class="btn btn-primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        💬 Chat on WhatsApp
+
+                    </a>
+
+
+                </div>
+
+
+                <form class="contact-form reveal" id="contactForm">
+
+                    <h3>Send a Message</h3>
+
+
+                    <div class="form-group">
+
+                        <label for="visitorName">
+                            Your Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="visitorName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="visitorEmail">
+                            Your Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="visitorEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="visitorSubject">
+                            Subject
+                        </label>
+
+                        <input
+                            type="text"
+                            id="visitorSubject"
+                            placeholder="What is this regarding?"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="visitorMessage">
+                            Your Message
+                        </label>
+
+                        <textarea
+                            id="visitorMessage"
+                            placeholder="Write your message here..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">
+
+                        Send Message →
+
+                    </button>
+
+
+                    <p class="form-note">
+
+                        Your device's default email application
+                        will open with your message prepared.
+
+                    </p>
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+
+                <div class="footer-brand">
+
+                    <a href="#home" class="logo">
+                        CW<span>.</span>
+                    </a>
+
+                    <p>
+                        Building connections. Creating opportunities.
+                        Growing through innovation.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <a href="#home">Home</a>
+
+                    <a href="#about">About</a>
+
+                    <a href="#projects">Projects</a>
+
+                    <a href="#skills">Skills</a>
+
+                    <a href="#contact">Contact</a>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="copyright">
+
+                © <span id="currentYear"></span>
+                Chigozirim Wilson Weli.
+
+                All Rights Reserved.
+
+                <br>
+
+                Designed with purpose and innovation.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         FLOATING WHATSAPP
+    ========================== -->
+
+    <a
+        href="https://wa.me/2349052582341?text=Hello%20Chigozirim%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect."
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact Chigozirim on WhatsApp"
+        title="Chat on WhatsApp"
+    >
+
+        ☎
+
+    </a>
+
+
+    <!-- =========================
+         SCROLL TO TOP
+    ========================== -->
+
+    <button
+        class="scroll-top"
+        id="scrollTop"
+        aria-label="Scroll to top"
+        title="Back to top"
+    >
+
+        ↑
+
+    </button>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           MOBILE NAVIGATION
+        ========================== */
+
+        const menuToggle = document.getElementById("menuToggle");
+
+        const navLinks = document.getElementById("navLinks");
+
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+        });
+
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("open");
+
+                menuToggle.textContent = "☰";
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+            });
+
+        });
+
+
+        /* =========================
+           DARK AND LIGHT MODE
+        ========================== */
+
+        const themeToggle = document.getElementById("themeToggle");
+
+
+        const savedTheme = localStorage.getItem("portfolioTheme");
+
+
+        if (savedTheme === "light") {
+
+            document.body.classList.add("light-mode");
+
+            themeToggle.textContent = "☾";
+
+        }
+
+
+        themeToggle.addEventListener("click", function () {
+
+            document.body.classList.toggle("light-mode");
+
+
+            const isLight = document.body.classList.contains("light-mode");
+
+
+            themeToggle.textContent = isLight ? "☾" : "☀";
+
+
+            localStorage.setItem(
+                "portfolioTheme",
+                isLight ? "light" : "dark"
+            );
+
+        });
+
+
+        /* =========================
+           CURRENT YEAR
+        ========================== */
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+
+        /* =========================
+           SCROLL REVEAL ANIMATIONS
+        ========================== */
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+
+        const revealObserver = new IntersectionObserver(
+
+            function (entries, observer) {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+
+        revealElements.forEach(element => {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* =========================
+           SCROLL TO TOP BUTTON
+        ========================== */
+
+        const scrollTopButton =
+            document.getElementById("scrollTop");
+
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 500) {
+
+                scrollTopButton.classList.add("show");
+
+            } else {
+
+                scrollTopButton.classList.remove("show");
+
+            }
+
+        });
+
+
+        scrollTopButton.addEventListener("click", function () {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+
+        /* =========================
+           ACTIVE NAVIGATION
+        ========================== */
+
+        const sections = document.querySelectorAll("section[id]");
+
+
+        window.addEventListener("scroll", function () {
+
+            let currentSection = "";
+
+
+            sections.forEach(section => {
+
+                const sectionTop = section.offsetTop - 150;
+
+                const sectionHeight = section.offsetHeight;
+
+
+                if (
+
+                    window.scrollY >= sectionTop &&
+
+                    window.scrollY < sectionTop + sectionHeight
+
+                ) {
+
+                    currentSection = section.getAttribute("id");
+
+                }
+
+            });
+
+
+            document.querySelectorAll(".nav-links a").forEach(link => {
+
+                link.classList.remove("active");
+
+
+                if (
+
+                    link.getAttribute("href") === "#" + currentSection
+
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+
+        /* =========================
+           EMAIL ENGINE
+        ========================== */
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+
+        contactForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+
+            const visitorName =
+                document.getElementById("visitorName").value.trim();
+
+
+            const visitorEmail =
+                document.getElementById("visitorEmail").value.trim();
+
+
+            const visitorSubject =
+                document.getElementById("visitorSubject").value.trim();
+
+
+            const visitorMessage =
+                document.getElementById("visitorMessage").value.trim();
+
+
+            const recipientEmail =
+                "wilsonweli60@gmail.com";
+
+
+            if (
+
+                !visitorName ||
+
+                !visitorEmail ||
+
+                !visitorSubject ||
+
+                !visitorMessage
+
+            ) {
+
+                alert("Please complete all fields before sending.");
+
+                return;
+
+            }
+
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (!emailPattern.test(visitorEmail)) {
+
+                alert("Please enter a valid email address.");
+
+                return;
+
+            }
+
+
+            const emailSubject = encodeURIComponent(visitorSubject);
+
+
+            const emailBody = encodeURIComponent(
+
+                "Hello Chigozirim Wilson Weli,\n\n" +
+
+                "You have received a new message through your portfolio website.\n\n" +
+
+                "VISITOR DETAILS\n" +
+
+                "Name: " + visitorName + "\n" +
+
+                "Email: " + visitorEmail + "\n\n" +
+
+                "MESSAGE\n" +
+
+                visitorMessage +
+
+                "\n\n----------------------------\n" +
+
+                "Sent through your portfolio contact form."
+
+            );
+
+
+            const mailtoLink =
+
+                "mailto:" +
+
+                recipientEmail +
+
+                "?subject=" +
+
+                emailSubject +
+
+                "&body=" +
+
+                emailBody;
+
+
+            window.location.href = mailtoLink;
+
+
+            alert(
+
+                "Your email application is opening. " +
+
+                "Please review the message and tap Send to deliver it."
+
+            );
+
+        });
+
+
+        /* =========================
+           SIMPLE TYPING EFFECT
+        ========================== */
+
+        const typingText =
+            document.getElementById("typingText");
+
+
+        const titles = [
+
+            "Your Professional Title Goes Here",
+
+            "Your Area of Specialization",
+
+            "Your Professional Identity"
+
+        ];
+
+
+        let titleIndex = 0;
+
+        let characterIndex = 0;
+
+        let deleting = false;
+
+
+        function typeEffect() {
+
+            const currentTitle = titles[titleIndex];
+
+
+            if (!deleting) {
+
+                typingText.textContent =
+
+                    currentTitle.substring(0, characterIndex + 1);
+
+                characterIndex++;
+
+
+                if (characterIndex === currentTitle.length) {
+
+                    deleting = true;
+
+                    setTimeout(typeEffect, 1800);
+
+                    return;
+
+                }
+
+            } else {
+
+                typingText.textContent =
+
+                    currentTitle.substring(0, characterIndex - 1);
+
+                characterIndex--;
+
+
+                if (characterIndex === 0) {
+
+                    deleting = false;
+
+                    titleIndex = (titleIndex + 1) % titles.length;
+
+                }
+
+            }
+
+
+            setTimeout(typeEffect, deleting ? 35 : 75);
+
+        }
+
+
+        typeEffect();
+
+
+        /* =========================
+           PREVENT EMPTY PROJECT LINKS
+        ========================== */
+
+        document.querySelectorAll(".project-link").forEach(link => {
+
+            if (link.getAttribute("href") === "#") {
+
+                link.addEventListener("click", function (event) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Project link coming soon. Add the actual project URL here."
+                    );
+
+                });
+
+            }
+
+        });
+
+
+    </script>
+
+</body>
+</html>
